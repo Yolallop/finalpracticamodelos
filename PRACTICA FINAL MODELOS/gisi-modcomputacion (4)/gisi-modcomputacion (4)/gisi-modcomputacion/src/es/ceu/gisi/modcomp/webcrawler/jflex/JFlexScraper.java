@@ -102,7 +102,22 @@ public class JFlexScraper {
                     }
                     break;
                               
-                    
+                    case 5:
+                    if (tokenLeer.getTipo() == Tipo.CLOSE){
+                        estado = 0;
+                        
+                    }
+                    break;
+                case 6:
+                     if (tokenLeer.getTipo() == Tipo.PALABRA){
+                        estado =7;}
+                      break;
+                      
+                case 7:
+                         if (tokenLeer.getTipo() == Tipo.CLOSE){
+                         estado =0;}
+                         
+                    }  
                     
                     
                     
