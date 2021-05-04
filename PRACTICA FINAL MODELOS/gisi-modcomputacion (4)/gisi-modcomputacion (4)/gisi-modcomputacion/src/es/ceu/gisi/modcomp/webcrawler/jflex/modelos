@@ -19,9 +19,10 @@ import java.util.Stack;
 public class JFlexScraper {
     public static ArrayList<String> obtenerHiperenlaces = new ArrayList<String>();
     public static ArrayList<String> obtenerHiperenlacesImagenes = new ArrayList<String>();
-    Stack<String> leerPila = new Stack(); 
+    Stack<String> etiquetasAbiertas = new Stack(); 
     
     HTMLParser analizador;
+    Stack <String> lecturasDePilas; 
     public JFlexScraper(File fichero) throws FileNotFoundException, IOException {
         Reader reader = new BufferedReader(new FileReader(fichero));
         analizador = new HTMLParser(reader);
@@ -38,12 +39,16 @@ public class JFlexScraper {
                     if (tokenLeer.getTipo() == Tipo.OPEN){
                         {
                             estado = 1;
-                        } 
-                        break;
-                case 1:
+                          
+                                 
+                        }
+                        break; 
+                    
+                
+                case 1 :
                         // palabra "HEAD"
                     if (tokenLeer.getTipo() == Tipo.PALABRA);{
-                    leerPila.add (tokenLeer.getValor()); {
+                    lecturasDePila.add (tokenLeer.getValor());  if (tokenleer.getValor().equalsIgnoreCase("a")){
                         etiquetaA = true;
                      }  
                     if (tokenLeer.getTipo() == Tipo.PALABRA){
@@ -93,7 +98,6 @@ public class JFlexScraper {
                     if (tokenLerr.getTipo() == Tipo.VALOR){
                          estado = 2;
                     }
-         
                         if (valorEsHREF){
                         enlacesA.add(tokenLeer.getValor());
                     }
@@ -113,11 +117,9 @@ public class JFlexScraper {
                     break;
                 case 6:
                      if (tokenLeer.getTipo() == Tipo.PALABRA){
-                         
                              estado =7;
-                             leerPila.add (tokenLeer.getValor());
-                         if (tokenLeer.getValor().equalsIgnoreCase(leerPila.peek())){
-                                 leerPila.pop();
+                         if (tokenLeer.getValor().equalsIgnoreCase(etiquetasAbiertas.peek())){
+                                    etiquetasAbiertas.pop();
                          } else{
                              malBalanceado = true;
                              
@@ -145,9 +147,7 @@ public class JFlexScraper {
 
     // Esta clase debe contener tu automata programado...
     public ArrayList<String> obtenerHiperenlaces() {
-        this.obtenerHiperenlaces().addAll(this.obtenerHiperenlaces);
-        
-        
+        this.obtenerHiperenlaces().addAll(this.hip)
         
         
         // Habrá que programarlo..
