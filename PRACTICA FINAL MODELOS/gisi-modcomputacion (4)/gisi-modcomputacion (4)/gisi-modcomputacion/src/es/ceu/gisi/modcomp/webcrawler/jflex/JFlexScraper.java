@@ -17,7 +17,10 @@ import java.util.Stack;
  * @author Sergio Saugar García <sergio.saugargarcia@ceu.es>
  */
 public class JFlexScraper {
-
+    public static ArrayList<String> obtenerHiperenlaces = new ArrayList<String>();
+    public static ArrayList<String> obtenerHiperenlacesImagenes = new ArrayList<String>();
+    Stack<String> etiquetasAbiertas = new Stack(); 
+    
     HTMLParser analizador;
     Stack <String> lecturasDePilas;
     public JFlexScraper(File fichero) throws FileNotFoundException, IOException {
@@ -42,25 +45,26 @@ public class JFlexScraper {
                         break; 
                     
                 
-                case 1:
+                case 1 :
                         // palabra "HEAD"
-                    if (tokenLeer.getTipo() ==Tipo.PALABRA);
+                    if (tokenLeer.getTipo() == Tipo.PALABRA);{
                     lecturasDePila.add (tokenLeer.getValor());  if (tokenleer.getValor().equalsIgnoreCase("a")){
                         etiquetaA = true;
-                        
-                     if (tokenLeer.getTipo() == Tipo.PALABRA){
+                     }  
+                    if (tokenLeer.getTipo() == Tipo.PALABRA){
                         estado = 2;
-                          if (tokenleer.getValor().equalsIgnoreCase("a")){
+                          if (tokenLeer.getValor().equalsIgnoreCase("a")){
                               etiquetaA = true;
-                    }        else if (tokenleer.getValor().equalsIgnoreCase("img")){
-                              etiquetaIMG = true;
-                        
+                            }else if (tokenleer.getValor().equalsIgnoreCase("img")){
+                              etiquetaIMG = true; 
+                    
+                            estado = 2;
                     }
                     else if ( tokenLeer.getTipo()==Tipo.SLASH){
                         estado = 6;
-                   }
                     }
-                }
+                    }
+                    }
                 break;
                 case 2 :
                     if (tokenLer.getTipo() == Tipo.PALABRA ){
@@ -91,14 +95,17 @@ public class JFlexScraper {
                     }
                       break;
                case 4: 
-                    if (valorEsHREF){
+                    if (tokenLerr.getTipo() == Tipo.VALOR){
+                         estado = 2;
+                    }
+                        if (valorEsHREF){
                         enlacesA.add(tokenLeer.getValor());
                     }
-                    else if (valorEsSRC){
-                        enlacesIMG.add(tokenLeer.getValor());
+                        else if (valorEsSRC){
+                            enlacesIMG.add(tokenLeer.getValor());
                     }
                     
-                       estado = 2;
+                      
                     }
                     break;
                               
@@ -110,6 +117,12 @@ public class JFlexScraper {
                     break;
                 case 6:
                      if (tokenLeer.getTipo() == Tipo.PALABRA){
+                         if (tokenLeer.getValor().equalsIgnoreCase(etiquetasAbiertas.peek())){
+                                    etiquetasAbiertas.pop();
+                         } else{
+                             malBalanceado = true;
+                             
+                         }     
                         estado =7;}
                       break;
                       
@@ -122,8 +135,10 @@ public class JFlexScraper {
                     
                     
                     
-                
+              
             }
+        tokenLeer = analizador.nextToken();
+        
         }
         
                 
@@ -141,7 +156,7 @@ public class JFlexScraper {
     }
 
     public boolean esDocumentoHTMLBienBalanceado() {
-        // Habrá que programarlo..
-        return false;
+        // Habrá que progr amarlo..
+        return!(malBalanceado && etiquetasaAbiertas.empty())
     }
 }

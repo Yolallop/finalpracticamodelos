@@ -8,3 +8,4 @@ package es.ceu.gisi.modcomp.webcrawler.jflex.lexico;
 public enum Tipo {
     OPEN, CLOSE, IGUAL, PALABRA, SLASH, VALOR
 }
+
