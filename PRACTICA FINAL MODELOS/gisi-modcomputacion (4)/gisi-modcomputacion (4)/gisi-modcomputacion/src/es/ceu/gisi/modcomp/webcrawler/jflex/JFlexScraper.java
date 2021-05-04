@@ -41,47 +41,40 @@ public class JFlexScraper {
                         } 
                         break;
                 case 1:
-                        // palabra "HEAD"
-                    if (tokenLeer.getTipo() == Tipo.PALABRA);{
-                    leerPila.add (tokenLeer.getValor()); {
-                        etiquetaA = true;
-                     }  
                     if (tokenLeer.getTipo() == Tipo.PALABRA){
                         estado = 2;
+                        leerPila.add (tokenLeer.getValor()); 
                           if (tokenLeer.getValor().equalsIgnoreCase("a")){
                               etiquetaA = true;
                             }else if (tokenleer.getValor().equalsIgnoreCase("img")){
-                              etiquetaIMG = true; 
-                    
-                            estado = 2;
+                              etiquetaIMG = true; } 
                     }
                     else if ( tokenLeer.getTipo()==Tipo.SLASH){
                         estado = 6;
                     }
-                    }
-                    }
                 break;
                 case 2 :
-                    if (tokenLer.getTipo() == Tipo.PALABRA ){
+                    if (tokenLeer.getTipo() == Tipo.PALABRA ){
                         estado=3;
                         if (estiquetaA){
                             if (tokenLeer.getValor().equalsIgnoreCase("href")){
                                 valorEsHREF = true;
+                        }
                     }
                     }else if (etiquetaIMG){
                          if (tokenLeer.getValor().equalsIgnoreCase("src")){
                              valorEsSRC = true;
+                        }
                     }
-                    }
-                    else if (tokenLeer.getTipo() == Tipo.VALOR){
+                    else if (tokenLeer.getTipo() == Tipo.SLASH){
                          estado= 5;
                     }
                     
                     else if (tokenLeer.getTipo() == Tipo.CLOSE){
                          estado = 0;
                          
-                    }
-                    }
+                        }
+                    
                     
                     break;
                 case 3:
@@ -90,18 +83,16 @@ public class JFlexScraper {
                     }
                       break;
                case 4: 
-                    if (tokenLerr.getTipo() == Tipo.VALOR){
+                    if (tokenLeer.getTipo() == Tipo.VALOR){
                          estado = 2;
-                    }
+                    
          
                         if (valorEsHREF){
                         enlacesA.add(tokenLeer.getValor());
-                    }
+                        }
                         else if (valorEsSRC){
                             enlacesIMG.add(tokenLeer.getValor());
-                    }
-                    
-                      
+                         }
                     }
                     break;
                               
@@ -146,7 +137,7 @@ public class JFlexScraper {
     // Esta clase debe contener tu automata programado...
     public ArrayList<String> obtenerHiperenlaces() {
         this.obtenerHiperenlaces().addAll(this.obtenerHiperenlaces);
-        
+        FileWriter
         
         
         
