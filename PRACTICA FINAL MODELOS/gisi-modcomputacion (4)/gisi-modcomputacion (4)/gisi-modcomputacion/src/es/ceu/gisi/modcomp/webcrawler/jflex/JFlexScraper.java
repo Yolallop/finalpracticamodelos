@@ -3,13 +3,16 @@ package es.ceu.gisi.modcomp.webcrawler.jflex;
 import es.ceu.gisi.modcomp.webcrawler.jflex.lexico.Tipo;
 import es.ceu.gisi.modcomp.webcrawler.jflex.lexico.Token;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Stack;
+
 
 /**
  * Esta clase encapsula toda la lógica de interacción con el parser HTML.
@@ -19,6 +22,8 @@ import java.util.Stack;
 public class JFlexScraper {
     public static ArrayList<String> enlacesA = new ArrayList<String>();
     public static ArrayList<String> enlacesImg = new ArrayList<String>();
+ 
+     
     Stack<String> leerPila = new Stack(); 
     boolean malBalanceado = false;
     HTMLParser analizador;
@@ -139,14 +144,25 @@ public class JFlexScraper {
     }
 
     // Esta clase debe contener tu automata programado...
-    public ArrayList<String> obtenerHiperenlaces() {
-        return enlacesA;
-     
+    public ArrayList<String> obtenerHiperenlaces() throws IOException {
+        File crearEnlacesA = new File ("obtenerHiperenlacesA.txt");
+        FileWriter fileEnlacesA =  new FileWriter ("obtenerHiperenalcesA.txt"); // se escribe 
+        BufferedWriter escribirEnlacesA = new BufferedWriter(fileEnlacesA); // PASO AL FICHERO ARRAY LIST 
+       
+
+        for ( int i=0;i<enlacesA.size();i++){
+        escribirEnlacesA.write(enlacesA.get(i));
+        escribirEnlacesA.newLine();
+        }
+        escribirEnlacesA.close();
+        return enlacesA;  
     }
+        
+       
+    
 
     public ArrayList<String> obtenerHiperenlacesImagenes() {
-        // Habrá que programarlo..
-        return new ArrayList<String>();
+        
     }
 
     public boolean esDocumentoHTMLBienBalanceado() {
