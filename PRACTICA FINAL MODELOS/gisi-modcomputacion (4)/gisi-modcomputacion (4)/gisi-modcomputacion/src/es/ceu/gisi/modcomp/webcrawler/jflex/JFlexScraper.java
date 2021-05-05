@@ -17,10 +17,10 @@ import java.util.Stack;
  * @author Sergio Saugar García <sergio.saugargarcia@ceu.es>
  */
 public class JFlexScraper {
-    public static ArrayList<String> obtenerHiperenlaces = new ArrayList<String>();
-    public static ArrayList<String> obtenerHiperenlacesImagenes = new ArrayList<String>();
+    public static ArrayList<String> enlacesA = new ArrayList<String>();
+    public static ArrayList<String> enlacesImg = new ArrayList<String>();
     Stack<String> leerPila = new Stack(); 
-    
+    boolean malBalanceado = false;
     HTMLParser analizador;
     public JFlexScraper(File fichero) throws FileNotFoundException, IOException {
         Reader reader = new BufferedReader(new FileReader(fichero));
@@ -31,14 +31,17 @@ public class JFlexScraper {
         boolean etiquetaIMG =  false;
         boolean valorEsHREF = false;
         boolean valorEsSRC = false;
-        Token tokenLeer= analizador.nextToken();
+        Token tokenLeer= analizador.nextToken(); 
+        
         while (tokenLeer != null){
             switch (estado){
                 case 0 :
                     if (tokenLeer.getTipo() == Tipo.OPEN){
                         {
                             estado = 1;
-                        } 
+                    
+                        }
+                    }
                         break;
                 case 1:
                     if (tokenLeer.getTipo() == Tipo.PALABRA){
@@ -46,7 +49,7 @@ public class JFlexScraper {
                         leerPila.add (tokenLeer.getValor()); 
                           if (tokenLeer.getValor().equalsIgnoreCase("a")){
                               etiquetaA = true;
-                            }else if (tokenleer.getValor().equalsIgnoreCase("img")){
+                            }else if (tokenLeer.getValor().equalsIgnoreCase("img")){
                               etiquetaIMG = true; } 
                     }
                     else if ( tokenLeer.getTipo()==Tipo.SLASH){
@@ -56,7 +59,7 @@ public class JFlexScraper {
                 case 2 :
                     if (tokenLeer.getTipo() == Tipo.PALABRA ){
                         estado=3;
-                        if (estiquetaA){
+                        if(etiquetaA){
                             if (tokenLeer.getValor().equalsIgnoreCase("href")){
                                 valorEsHREF = true;
                         }
@@ -67,6 +70,7 @@ public class JFlexScraper {
                         }
                     }
                     else if (tokenLeer.getTipo() == Tipo.SLASH){
+                        leerPila.pop();
                          estado= 5;
                     }
                     
@@ -91,7 +95,7 @@ public class JFlexScraper {
                         enlacesA.add(tokenLeer.getValor());
                         }
                         else if (valorEsSRC){
-                            enlacesIMG.add(tokenLeer.getValor());
+                        enlacesImg.add(tokenLeer.getValor());
                          }
                     }
                     break;
@@ -106,7 +110,7 @@ public class JFlexScraper {
                      if (tokenLeer.getTipo() == Tipo.PALABRA){
                          
                              estado =7;
-                             leerPila.add (tokenLeer.getValor());
+                            
                          if (tokenLeer.getValor().equalsIgnoreCase(leerPila.peek())){
                                  leerPila.pop();
                          } else{
@@ -120,7 +124,7 @@ public class JFlexScraper {
                          if (tokenLeer.getTipo() == Tipo.CLOSE){
                          estado =0;}
                          
-                    }  
+                     
                     
                     
                     
@@ -136,13 +140,8 @@ public class JFlexScraper {
 
     // Esta clase debe contener tu automata programado...
     public ArrayList<String> obtenerHiperenlaces() {
-        this.obtenerHiperenlaces().addAll(this.obtenerHiperenlaces);
-        FileWriter
-        
-        
-        
-        // Habrá que programarlo..
-        return new ArrayList<String>();
+        return enlacesA;
+     
     }
 
     public ArrayList<String> obtenerHiperenlacesImagenes() {
@@ -151,7 +150,7 @@ public class JFlexScraper {
     }
 
     public boolean esDocumentoHTMLBienBalanceado() {
-        // Habrá que progr amarlo..
-        return!(malBalanceado && etiquetasaAbiertas.empty())
+   
+        return !(malBalanceado || enlacesA.isEmpty());
     }
 }
