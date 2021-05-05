@@ -161,7 +161,20 @@ public class JFlexScraper {
        
     
 
-    public ArrayList<String> obtenerHiperenlacesImagenes() {
+    public ArrayList<String> obtenerHiperenlacesImagenes() throws IOException {
+           File crearEnlacesA = new File ("obtenerHiperenlacesIMG.txt");
+        FileWriter fileEnlacesA =  new FileWriter ("obtenerHiperenalcesIMG.txt"); // se escribe 
+        BufferedWriter escribirEnlacesA = new BufferedWriter(fileEnlacesA); // PASO AL FICHERO ARRAY LIST 
+       
+
+        for ( int i=0;i<enlacesImg.size();i++){
+        escribirEnlacesA.write(enlacesImg.get(i));
+        escribirEnlacesA.newLine();
+        }
+        escribirEnlacesA.close();
+        return enlacesImg;  
+
+        
         
     }
 
