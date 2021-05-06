@@ -35,15 +35,9 @@ public class HTMLParserTest {
      * prueba.
      */
     public HTMLParserTest() {
-        try {
-            reader1 = new BufferedReader(new FileReader(ficheroPrueba1));
-            reader2 = new BufferedReader(new FileReader(ficheroPrueba2));
-            analizador = new HTMLParser(reader1);
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("No se pudo abrir alguno de los ficheros");
-            fnfe.printStackTrace(System.out);
-            throw new RuntimeException();
-        }
+        JFlexScraper (ficheroPrueba1);
+        assertrue.
+        
     }
 
     /**
@@ -52,16 +46,8 @@ public class HTMLParserTest {
      */
     @Test
     public void compruebaEtiquetaInicioHTML() {
-        try {
-            Token token1 = analizador.nextToken();
-            Token token2 = analizador.nextToken();
-            Token token3 = analizador.nextToken();
-            assertEquals(token1.getTipo(), Tipo.OPEN);
-            assertEquals(token2.getValor().toLowerCase(), "html");
-            assertEquals(token3.getTipo(), Tipo.CLOSE);
-        } catch (IOException ex) {
-            Logger.getLogger(HTMLParserTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
+        new JFlexquals= 
     }
 
     /**
@@ -125,5 +111,9 @@ public class HTMLParserTest {
             Logger.getLogger(HTMLParserTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
+    }
+
+    private void JFlexScraper(File ficheroPrueba1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
