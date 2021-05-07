@@ -31,6 +31,24 @@ public class WebCrawler {
         
        
     
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
 
     public ArrayList<String> obtenerHiperenlacesImagenes() throws IOException {
         File crearEnlacesA = new File ("obtenerHiperenlacesIMG.txt");

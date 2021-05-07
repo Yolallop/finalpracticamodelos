@@ -36,7 +36,7 @@ public class HTMLParserTest {
      */
     public HTMLParserTest() {
         JFlexScraper (ficheroPrueba1);
-        assertrue.
+   
         
     }
 
@@ -47,7 +47,7 @@ public class HTMLParserTest {
     @Test
     public void compruebaEtiquetaInicioHTML() {
       
-        new JFlexquals= 
+      
     }
 
     /**
