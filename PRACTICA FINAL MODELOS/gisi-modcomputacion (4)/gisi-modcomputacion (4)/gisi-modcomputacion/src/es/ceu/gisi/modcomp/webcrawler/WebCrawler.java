@@ -15,6 +15,11 @@ import java.util.ArrayList;
  * @author Sergio Saugar García <sergio.saugargarcia@ceu.es>
  */
 public class WebCrawler {
+    public static void main(String[] args){
+        String PATH_PRUEBAS = new java.io.File("").getAbsolutePath()
+            + "/test/es/ceu/gisi/modcomp/webcrawler/jflex/test/";
+        
+    }
        public ArrayList<String> obtenerHiperenlaces() throws IOException {
         File crearEnlacesA = new File ("obtenerHiperenlacesA.txt");
         FileWriter fileEnlacesA =  new FileWriter ("obtenerHiperenalcesA.txt"); // se escribe 
@@ -30,25 +35,7 @@ public class WebCrawler {
     }
         
        
-    
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
-       
+  
 
     public ArrayList<String> obtenerHiperenlacesImagenes() throws IOException {
         File crearEnlacesA = new File ("obtenerHiperenlacesIMG.txt");

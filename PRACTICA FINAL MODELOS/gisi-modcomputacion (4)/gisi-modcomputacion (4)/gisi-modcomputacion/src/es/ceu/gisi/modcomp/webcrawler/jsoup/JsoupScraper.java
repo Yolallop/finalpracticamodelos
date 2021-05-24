@@ -5,13 +5,20 @@
  */
 package es.ceu.gisi.modcomp.webcrawler.jsoup;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.xml.sax.SAXException;
 
 /**
  * Esta clase encapsula toda la lógica de interacción con el analizador Jsoup.
@@ -20,7 +27,7 @@ import org.jsoup.nodes.Element;
  */
 public class JsoupScraper {
 
-    private final Document doc;
+    private final Document doc; //el diocumento se llama doc y la inicializo con la url 
 
     /**
      * Este constructor crea un documento a partir de la URL de la página web a
@@ -29,11 +36,28 @@ public class JsoupScraper {
      * @param url Una URL que apunte a un documento HTML (p.e.
      *            http://www.servidor.com/index.html)
      */
-    public JsoupScraper(URL url) throws IOException {
+    public JsoupScraper(URL url) throws IOException, SAXException {
         // La variable deberá inicializarse de alguna manera utilizando una URL...
         // De momento, se inicializa a null para que compile...
-        doc = null;
+     
+        //HTML abrir fichero html y ver si existe 
+       
+     
     }
+
+    public JsoupScraper(File ficheroPrueba1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   // ver si la primera etiqueta es HTML
+        public String primeraEtiqueta(){
+            String resultado;
+            int inicio = doc.text().indexOf("<");// inicio de la palabra
+            int fin = doc.text().indexOf(">"); //como acaba
+            resultado = doc.text().substring(inicio, fin);
+            
+            return resultado;
+        }
 
     /**
      * Este constructor crea un documento a partir del contenido HTML del String
@@ -52,9 +76,13 @@ public class JsoupScraper {
      *
      * @return El número de etiquetas de ese tipo que hay en el documento HTML
      */
-    public int estadisticasEtiqueta(String etiqueta) {
-        // Habrá que programarlo..
-        return 0;
+    public int estadisticasEtiqueta(String etiqueta) { //contsr cunatas veces aparece la etiqueeta
+    
+            
+             
+         
+        
+        return contadoretiqueta;
     }
 
     /**
@@ -62,8 +90,11 @@ public class JsoupScraper {
      *
      * @return Una lista con todas las URLs de los hiperenlaces
      */
-    public List<String> obtenerHiperenlaces() {
-        // Habrá que programarlo..
+   
+            
+        
+        
+        
         return new ArrayList<String>();
     }
 

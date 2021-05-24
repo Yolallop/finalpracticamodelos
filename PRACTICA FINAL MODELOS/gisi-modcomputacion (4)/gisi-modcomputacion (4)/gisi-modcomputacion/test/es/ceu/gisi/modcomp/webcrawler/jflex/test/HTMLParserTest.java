@@ -1,8 +1,10 @@
 package es.ceu.gisi.modcomp.webcrawler.jflex.test;
 
 import es.ceu.gisi.modcomp.webcrawler.jflex.HTMLParser;
+import es.ceu.gisi.modcomp.webcrawler.jflex.JFlexScraper;
 import es.ceu.gisi.modcomp.webcrawler.jflex.lexico.Tipo;
 import es.ceu.gisi.modcomp.webcrawler.jflex.lexico.Token;
+import es.ceu.gisi.modcomp.webcrawler.jsoup.JsoupScraper;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,27 +28,37 @@ public class HTMLParserTest {
 
     private File ficheroPrueba1 = new File(PATH_PRUEBAS + "prueba1.html");
     private File ficheroPrueba2 = new File(PATH_PRUEBAS + "prueba2.html");
-    private Reader reader1;
-    private Reader reader2;
-    HTMLParser analizador;
-
+    
     /**
      * Se va a crear un analizador léxico, a partir de uno de los ficheros de
      * prueba.
      */
     public HTMLParserTest() {
-        JFlexScraper (ficheroPrueba1);
-   
+ 
         
     }
 
     /**
      * El test comprueba que el analizador léxico reconoce los tres primeros
      * tokens de un fichero HTML y que corresponden con "<HTML>".
+     * @throws java.io.IOException
      */
     @Test
-    public void compruebaEtiquetaInicioHTML() {
+   
+     
       
+      
+      
+      
+      
+      
+      
+      
+              
+              
+              
+              
+   
       
     }
 
@@ -75,7 +87,8 @@ public class HTMLParserTest {
             assertEquals(token5.getTipo(), Tipo.SLASH);
             assertEquals(token6.getValor().toLowerCase(), "html");
             assertEquals(token7.getTipo(), Tipo.CLOSE);
-        } catch (IOException ex) {
+        } 
+        catch (IOException ex){
             Logger.getLogger(HTMLParserTest.class.getName()).log(Level.SEVERE, null, ex);
             assertTrue(false);
         }
@@ -114,6 +127,10 @@ public class HTMLParserTest {
     }
 
     private void JFlexScraper(File ficheroPrueba1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    private void assertTrue(String html) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
