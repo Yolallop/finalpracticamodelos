@@ -77,7 +77,15 @@ public class JsoupScraper {
      * @return El número de etiquetas de ese tipo que hay en el documento HTML
      */
     public int estadisticasEtiqueta(String etiqueta) { //contsr cunatas veces aparece la etiqueeta
-    
+         int contadoretiqueta = 0;
+         String text = doc.text(); //obtener el texto en forma de etxto 
+         text.contains(etiqueta);  // nos va a decir si lo contiene
+         while (text.contains(etiqueta)){
+             text.substring(text.indexOf(etiqueta)+ etiqueta.length()+1); // para que empieze a mirar el siguiente caratcter ( el +1)
+            contadoretiqueta ++;
+           
+           }
+      
             
              
          
