@@ -42,7 +42,8 @@ public class JsoupScraper {
      
         //HTML abrir fichero html y ver si existe 
        
-     
+
+        
     }
 
     public JsoupScraper(File ficheroPrueba1) {
@@ -50,7 +51,7 @@ public class JsoupScraper {
     }
 
    // ver si la primera etiqueta es HTML
-        public String primeraEtiqueta(){
+        String primeraEtiqueta(){
             String resultado;
             int inicio = doc.text().indexOf("<");// inicio de la palabra
             int fin = doc.text().indexOf(">"); //como acaba
@@ -85,7 +86,6 @@ public class JsoupScraper {
             contadoretiqueta ++;
            
            }
-      
             
              
          
@@ -98,7 +98,15 @@ public class JsoupScraper {
      *
      * @return Una lista con todas las URLs de los hiperenlaces
      */
-   
+    public List<String> obtenerHiperenlaces() { //todo los enlaces contienen un hred 
+         int contadoretiqueta = 0;
+         String text = doc.text(); //obtener el texto en forma de etxto 
+         text.contains("<a");  // nos va a decir si lo contiene
+         while (text.contains("<a")){
+             text.substring(text.indexOf("<a")+ "<a".length()+1); // para que empieze a mirar el siguiente caratcter ( el +1)
+            contadoretiqueta ++;
+           
+           }
             
         
         
