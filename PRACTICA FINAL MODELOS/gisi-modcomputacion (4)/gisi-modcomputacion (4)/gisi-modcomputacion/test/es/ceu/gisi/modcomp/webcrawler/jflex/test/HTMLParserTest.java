@@ -57,17 +57,20 @@ public class HTMLParserTest {
           JFlexScraper j = new JFlexScraper (ficheroPrueba1) ;
           assertEquals(j.obtenerHiperenlaces().size(),1);
           assertEquals(j.obtenerHiperenlaces().get(0),"imagen tiempo.jpg ");    
+        }
+     
+      
+      @Test
+      public void obtenerBienBalanceado() throws FileNotFoundException, IOException{
+          JFlexScraper j = new JFlexScraper (ficheroPrueba1) ;
+          assertTrue(j.esDocumentoHTMLBienBalanceado());
           
+        } 
+          
+          
+      }
       
       
-      
-              
-              
-              
-              
-   
-      
-    }
 
     /**
      * El test comprueba que el analizador léxico reconoce los tres primeros
