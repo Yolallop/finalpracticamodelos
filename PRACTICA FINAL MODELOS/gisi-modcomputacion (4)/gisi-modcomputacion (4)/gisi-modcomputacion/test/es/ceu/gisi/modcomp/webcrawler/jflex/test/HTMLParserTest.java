@@ -37,20 +37,27 @@ public class HTMLParserTest {
  
         
     }
+     
 
     /**
      * El test comprueba que el analizador léxico reconoce los tres primeros
      * tokens de un fichero HTML y que corresponden con "<HTML>".
      * @throws java.io.IOException
      */
-    @Test
-   
-     
-      
-      
-      
-      
-      
+    
+          
+      @Test
+      public void obtenerHiperenlacesBien() throws FileNotFoundException, IOException{
+          JFlexScraper j = new JFlexScraper (ficheroPrueba1) ;
+          assertEquals(j.obtenerHiperenlaces().size(),1);
+          assertEquals(j.obtenerHiperenlaces().get(0),"https://www.eldiario.es");     
+      }
+      @Test
+      public void obtenerImagenesBien() throws FileNotFoundException, IOException{
+          JFlexScraper j = new JFlexScraper (ficheroPrueba1) ;
+          assertEquals(j.obtenerHiperenlaces().size(),1);
+          assertEquals(j.obtenerHiperenlaces().get(0),"imagen tiempo.jpg ");    
+          
       
       
       
