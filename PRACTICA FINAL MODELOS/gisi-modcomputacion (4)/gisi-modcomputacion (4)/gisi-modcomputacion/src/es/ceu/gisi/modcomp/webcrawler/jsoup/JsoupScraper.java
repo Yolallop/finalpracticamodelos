@@ -37,14 +37,14 @@ public class JsoupScraper {
      *            http://www.servidor.com/index.html)
      */
     public JsoupScraper(URL url) throws IOException, SAXException {
-        // La variable deberá inicializarse de alguna manera utilizando una URL...
-        // De momento, se inicializa a null para que compile...
-     
-        //HTML abrir fichero html y ver si existe 
-       
-
-        
+ 
+        url = new URL ("http://www.servidor.com/index.html");
+        doc = Jsoup.connect("http://www.servidor.com/index.html").get();
+        String title = doc.title();
+      
     }
+    
+   
 
     public JsoupScraper(File ficheroPrueba1) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
