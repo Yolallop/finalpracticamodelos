@@ -148,7 +148,6 @@ public class HTMLParserTest {
             assertTrue(false);
         }
     }
-@Test
          public void compruebaInicioYFinEtiquetaBODY() throws IOException {
          try {
               analizador.yyreset(reader1);
@@ -157,7 +156,7 @@ public class HTMLParserTest {
             Token token2 = analizador.nextToken();
             Token token3 = analizador.nextToken();
             assertEquals(token1.getTipo(), Tipo.OPEN);
-            assertEquals(token2.getValor().toLowerCase(), "HTML");
+            assertEquals(token2.getValor().toLowerCase(), "BODY");
             assertEquals(token3.getTipo(), Tipo.CLOSE);
 
             // El final de una etiqueta HTML es: </NOMBREETIQUETA>
@@ -167,7 +166,7 @@ public class HTMLParserTest {
             Token token7 = analizador.nextToken();
             assertEquals(token4.getTipo(), Tipo.OPEN);
             assertEquals(token5.getTipo(), Tipo.SLASH);
-            assertEquals(token6.getValor().toLowerCase(), "HTML");
+            assertEquals(token6.getValor().toLowerCase(), "BODY");
             assertEquals(token7.getTipo(), Tipo.CLOSE);
         } catch (IOException ex) {
             Logger.getLogger(HTMLParserTest.class.getName()).log(Level.SEVERE, null, ex);
@@ -198,25 +197,68 @@ public class HTMLParserTest {
     
 }
      @Test 
-    public void obtenerHiperEnlaceBien() throws FileNotFoundException, IOException{
-    JFlexScraper j = new JFlexScraper (ficheroPrueba1);
-    assertTrue(j.esDocumentoHTMLBienBalanceado());
-    
-    
-}
-     @Test 
     public void obtenerHiperEnlaceMal() throws FileNotFoundException, IOException{
     JFlexScraper j = new JFlexScraper (ficheroPrueba1);
     assertFalse(j.esDocumentoHTMLBienBalanceado());
     
     
 }
+         @Test 
+    public void obtenerHiperenalcesBien2() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba2);
+    assertEquals(j.obtenerHiperenlaces().size(),1);
+    assertEquals(j.obtenerHiperenlaces().get(0), "X-UA-Compatible");
     
+    
+
+}
+    
+    @Test 
+    public void obtenerImagenesCorectas2() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba2);
+    assertEquals(j.obtenerHiperenlaces().size(),2);
+    assertEquals(j.obtenerHiperenlaces().get(0), "imagen tiempo.jpg");
     
     
     
     
 }
+      @Test 
+    public void obtenerHiperEnlaceBien2() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba2);
+    assertTrue(j.esDocumentoHTMLBienBalanceado());
+    
+    
+}
+     @Test 
+    public void obtenerHiperEnlaceMal2() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba2);
+    assertFalse(j.esDocumentoHTMLBienBalanceado());
+    
+    }
+    
+         @Test 
+    public void obtenerHiperenalcesBien3() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba2);
+    assertEquals(j.obtenerHiperenlaces().size(),1); //HREF
+    assertEquals(j.obtenerHiperenlaces().get(0), "X-UA-Compatible");
+    }
+    @Test 
+    public void obtenerImagenesCorectas3() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba3);
+    assertEquals(j.obtenerHiperenlaces().size(),1);
+    assertEquals(j.obtenerHiperenlaces().get(0), "imagen tiempo.jpg");
+    }
+    
+    @Test 
+    public void obtenerBienBalanceado3() throws FileNotFoundException, IOException{
+    JFlexScraper j = new JFlexScraper (ficheroPrueba1);
+    assertTrue(j.esDocumentoHTMLBienBalanceado());
+    
+    }
+  
+}
+    
 
     
     

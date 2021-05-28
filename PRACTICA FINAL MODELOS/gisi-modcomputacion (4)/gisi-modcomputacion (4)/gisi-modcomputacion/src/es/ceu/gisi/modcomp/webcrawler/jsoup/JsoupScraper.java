@@ -106,10 +106,7 @@ public class JsoupScraper {
              text.substring(text.indexOf("<a")+ "<a".length()+1); // para que empieze a mirar el siguiente caratcter ( el +1)
             contadoretiqueta ++;
            
-           }
-            
-        
-        
+         }
         
         return new ArrayList<String>();
     }
