@@ -1,0 +1,14 @@
+<%- include("index", {}) %>
+
+  <h1>Registro</h1>
+  <form method="post" action="/register">
+    <label for="user">Usuario:</label>
+    <input type="text" id="user" name="user" required><br>
+    <label for="pass">Contraseña:</label>
+    <input type="password" id="pass" name="pass" required><br>
+    <label for="confirmPass">Confirmar Contraseña:</label>
+    <input type="password" id="confirmPass" name="confirmPass" required><br>
+    <button type="submit">Registrar</button>
+  </form>
+</body>
+</html>

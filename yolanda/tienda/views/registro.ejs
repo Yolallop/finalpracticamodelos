@@ -1,0 +1,11 @@
+<%- include("header", {}) %>
+<%- include("header", {}) %>
+<h1><%= title %></h1>
+
+<form id="registroForm" action="/registro" method="POST">
+    <input type="text" id="username" name="user" placeholder="Usuario" required>
+    <input type="password" id="password" name="pass" placeholder="Contraseña" required>
+    <input type="password" id="confirmPassword" name="confirmPass" placeholder="Confirmar contraseña" required>
+    <button type="submit">Registrar</button>
+  </form>
+<%- include("footer", {}) %>
